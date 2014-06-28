@@ -14,9 +14,7 @@
         "guzzle/guzzle": "3.*"
     },
     "autoload": {
-        "psr-0": {
-            "Gracenote\\WebAPI\\": "gracenote-rhythm/"
-        }
+        "files": ["gracenote-rhythm/GracenoteRhythm.class.php"]
     },
     "minimum-stability": "dev"
 }
