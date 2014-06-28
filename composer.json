@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-0": {
-            "gracenote-rhythm\\": "/"
+            "gracenote-rhythm\\": "gracenote-rhythm/"
         }
     },
     "minimum-stability": "dev"
