@@ -13,9 +13,10 @@ include(dirname( __FILE__ )."/HTTP.class.php");
 // The different API calls that can be made.
 class GracenoteRhythmAPI
 {
-    const REGISTER = "register";
-    const CREATE   = "create";
-    const FIELDS   = "fieldvalues";
+    const REGISTER  = "register";
+    const CREATE    = "create";
+    const FIELDS    = "fieldvalues";
+    const RECOMMEND = "recommend";
 }
 
 class GracenoteRhythm
@@ -60,7 +61,7 @@ class GracenoteRhythm
 
         // Construct the URL
         $url = $this->_apiURL.$api."?";
-        foreach ($inputs as $key => $value) { $url .= $key."=".$value."&"; }
+        foreach ($inputs as $key => $value) { $url .= $key."=".urlencode($value)."&"; }
 
         // Make the request
         $request  = new HTTP($url);
@@ -162,14 +163,20 @@ class GracenoteRhythm
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Generic function to create a station from various seeds.
-    public function createStation($inputs)
+    public function createStation($inputs, $mode = GracenoteRhythmAPI::CREATE)
     {
         // Automatically add some common options.
-        $inputs["return_count"]    = 10;
-        $inputs["select_extended"] = "cover,link";
+        if(!isset($inputs["return_count"])) $inputs["return_count"]    = 10;
+        if(!isset($inputs["select_extended"])) $inputs["select_extended"] = "cover,link";
 
-        $response = $this->_execute(GracenoteRhythmAPI::CREATE, $inputs);
+        $response = $this->_execute($mode, $inputs);
         return $response;
+    }
+    
+    // Generic function to create recommendations from various seeds.
+    public function createRecomendation($inputs)
+    {
+        return $this->createStation($inputs, GracenoteRhythmAPI::RECOMMEND);
     }
 
     // Helpers to create radio stations based on various seeds.

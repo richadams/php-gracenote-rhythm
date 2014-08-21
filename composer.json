@@ -1,0 +1,20 @@
+{
+    "name": "richadams/php-gracenote-rhythm",
+    "description": "A PHP client for the Gracenote Rhythm API. Example code to get you started on your own projects using Rhythm.",
+    "keywords": ["gracenote", "rhythm", "php", "api"],
+    "type": "library",
+    "license": "CC-BY-3.0",
+    "authors": [
+        {
+            "name": "Rich Adams"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "guzzle/guzzle": "3.*"
+    },
+    "autoload": {
+        "files": ["gracenote-rhythm/GracenoteRhythm.class.php"]
+    },
+    "minimum-stability": "dev"
+}
